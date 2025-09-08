@@ -1,0 +1,42 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+<div id="principal-container">
+    <div id="form-container">
+        
+        <span>Inicio de Sesión</span>
+
+        <form [formGroup]="formLogin" (ngSubmit)="login()">
+            <mat-form-field>
+                <mat-label>Correo</mat-label>
+
+                <input matInput formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+
+                <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'"/>
+                <button
+                    type="button"
+                    mat-icon-button
+                    matSuffix
+                    (click)="clickEvent($event)"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide()"
+                >
+
+                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </form>
+
+        <div id="buttons-form-container">
+            <button mat-raised-button (click)="login()">Ingresar</button>
+
+            <button mat-button (click)="goRegister()">Registrarse</button>
+        </div>
+
+    </div>
+</div>

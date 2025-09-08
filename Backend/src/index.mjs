@@ -3,9 +3,15 @@ import dotenv from "dotenv";
 import sequelize from "./config/database.mjs";
 import authRouter from "./routes/auth.routes.mjs";
 import subredditRouter from "./routes/subreddit.routes.mjs";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
+
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
