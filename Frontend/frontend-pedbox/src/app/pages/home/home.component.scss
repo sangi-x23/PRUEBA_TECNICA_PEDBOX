@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+#principal-container {
+    height: 100vh;
+    padding: 40px;
+    background-color: $primary-color;
+
+    #subreddit-container {
+        height: 80%;
+        border-radius: 14px;
+        background-color: $secondary-color;
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+
+            button {
+                margin-left: 20px;
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ export const updateSubreddits = async (req, res) => {
 
         const subreddits = responde.data.data.children.map((child => child.data));
 
-        await Subreddit.destroy({ where: {} });
+        await Subreddit.destroy({ where: {}, truncate: true, restartIdentity: true });
 
         for (const s of subreddits) {
             await Subreddit.create({
@@ -24,7 +24,7 @@ export const updateSubreddits = async (req, res) => {
             });
         }
 
-        res.json({message: "Subreddits actualizados correctamente" });
+        res.json({isSuccess: true, message: "Subreddits actualizados correctamente" });
     } catch (error) {
         res.status(500).json({ message: "Error al actualizar subreddits", error: error.message });
     }
