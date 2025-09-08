@@ -1,12 +1,30 @@
 import express from "express";
+import dotenv from "dotenv";
+import sequelize from "./config/database.mjs";
+import router from "./routes/auth.routes.mjs";
 
+dotenv.config();
 const app = express();
+app.use(express.json());
+
+console.log("DB Name: " + process.env.DB_NAME);
+
+app.use("/api/auth", router);
 
 app.get("/", (req, res) => {
   res.send("API Funcionando!");
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+const start = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log("Conexión a la base de datos establecida");
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+    } catch (error) {
+        console.error("No se pudo conectar a la base de datos:", error);
+        process.exit(1);
+    }
+};
+
+start();
