@@ -1,15 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import sequelize from "./config/database.mjs";
-import router from "./routes/auth.routes.mjs";
+import authRouter from "./routes/auth.routes.mjs";
+import subredditRouter from "./routes/subreddit.routes.mjs";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 
-console.log("DB Name: " + process.env.DB_NAME);
-
-app.use("/api/auth", router);
+app.use("/api/auth", authRouter);
+app.use("/api", subredditRouter);
 
 app.get("/", (req, res) => {
   res.send("API Funcionando!");
