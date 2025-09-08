@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div id="principal-container">
+    <div id="form-container">
+        
+        <span>Registrarse</span>
+
+        <form>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+
+                <input matInput/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Correo</mat-label>
+
+                <input matInput/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+
+                <input matInput [type]="hide() ? 'password' : 'text'"/>
+                <button
+                    type="button"
+                    mat-icon-button
+                    matSuffix
+                    (click)="clickEvent($event)"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide()"
+                >
+
+                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </form>
+
+        <div id="buttons-form-container">
+            <button mat-button>Registrarse</button>
+        </div>
+
+    </div>
+</div>
