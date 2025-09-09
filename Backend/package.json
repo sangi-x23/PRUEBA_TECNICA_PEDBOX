@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.mjs",
+  "main": "src/index.mjs",
   "scripts": {
-    "start": "nodemon src index.mjs",
+    "start": "node src/index.mjs",
     "dev": "nodemon --watch src --exec node src/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

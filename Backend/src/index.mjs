@@ -6,10 +6,11 @@ import subredditRouter from "./routes/subreddit.routes.mjs";
 import cors from "cors";
 
 dotenv.config();
+
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: process.env.CORS_ORIGIN
 }));
 
 app.use(express.json());
@@ -25,7 +26,7 @@ const start = async () => {
     try {
         await sequelize.authenticate();
         console.log("Conexión a la base de datos establecida");
-        const PORT = process.env.PORT || 3000;
+        const PORT = process.env.PORT;
         app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
     } catch (error) {
         console.error("No se pudo conectar a la base de datos:", error);
