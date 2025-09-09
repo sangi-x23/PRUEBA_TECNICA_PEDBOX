@@ -1,4 +1,4 @@
-# 📌 Proyecto Reddit Manager
+# 📌 Prueba Técnica PEDBOX
 
 Este repositorio contiene dos partes principales:
 
@@ -6,6 +6,38 @@ Este repositorio contiene dos partes principales:
 * **Frontend**: Aplicación en Angular con Angular Material.
 
 El sistema permite autenticación de usuarios con **JWT** y la gestión de información de **subreddits**.
+
+---
+
+# Base de Datos MySQL
+
+### 1. `usuarios`
+Tabla para almacenar la información de los usuarios registrados.
+
+
+| Campo      | Tipo           | Restricciones              | Descripción                        |
+|------------|----------------|----------------------------|------------------------------------|
+| id         | INT            | PK, AI                     | Identificador único del usuario    |
+| name       | VARCHAR(255)   | NOT NULL                   | Nombre del usuario                 |
+| email      | VARCHAR(255)   | NOT NULL, UNIQUE           | Correo electrónico del usuario     |
+| password   | VARCHAR(255)   | NOT NULL                   | Contraseña encriptada              |
+
+### 2. `subreddits`
+Tabla para almacenar la información de los subreddits obtenidos desde la API de Reddit.
+
+| Campo                 | Tipo           | Restricciones              | Descripción                               |
+|-----------------------|----------------|----------------------------|-------------------------------------------|
+| id                    | INT            | PK, AI                     | Identificador único del subreddit         |
+| reddit_id             | VARCHAR(50)    | NOT NULL                   | ID proporcionado por Reddit               |
+| title                 | VARCHAR(255)   | NOT NULL                   | Título del subreddit                      |
+| display_name_prefixed | VARCHAR(100)   | NOT NULL                   | Nombre mostrado (ej: r/Home)              |
+| subscribers           | INT            | NULL                       | Número de suscriptores                    |
+| name                  | VARCHAR(100)   | NULL                       | Nombre interno en Reddit (ej: t5_2qs0k)   |
+| submit_text           | TEXT           | NULL                       | Texto de envío                            |
+| created               | BIGINT         | NULL                       | Fecha de creación (timestamp UNIX)        |
+| subreddit_type        | VARCHAR(50)    | NULL                       | Tipo de subreddit (ej: public, private)   |
+| over18                | BOOLEAN        | DEFAULT FALSE              | Indica si es contenido NSFW               |
+| description           | TEXT           | NULL                       | Descripción pública                       |
 
 ---
 
