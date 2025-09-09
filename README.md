@@ -11,6 +11,10 @@ El sistema permite autenticación de usuarios con **JWT** y la gestión de infor
 
 # Base de Datos MySQL
 
+### Nota.
+La base de datos MySQL se encuentra alojada en Clover Cloud, por lo que no es necesario realizar configuración
+de BD.
+
 ### 1. `usuarios`
 Tabla para almacenar la información de los usuarios registrados.
 
