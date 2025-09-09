@@ -23,6 +23,16 @@ export class SubredditService {
         return this.http.get<Subreddit[]>(url, { headers });
     }
 
+    getSubredditById(id: string): Observable<Subreddit> {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            Authorization: `Bearer ${token}`
+        });
+
+        const url = `${this.baseUrl}api/subreddits/${id}`;
+        return this.http.get<Subreddit>(url, { headers });
+    }
+
     updateSubreddit() {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({

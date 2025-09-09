@@ -1,0 +1,21 @@
+<mat-card *ngIf="subreddit$ | async as subreddit" id="subreddit-dialog">
+    <mat-card *ngIf="subreddit$ | async as subreddit" id="subreddit-card">
+        <mat-card-header>
+            <mat-card-title>{{ subreddit.title }}</mat-card-title>
+            <mat-card-subtitle>{{ subreddit.display_name_prefixed }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <p><strong>ID:</strong> {{ subreddit.id }}</p>
+            <p><strong>Reddit ID:</strong> {{ subreddit.reddit_id }}</p>
+            <p><strong>NSFW (over18):</strong> {{ subreddit.over18 ? 'Sí' : 'No' }}</p>
+            <p><strong>Descripción:</strong> {{ subreddit.description || 'Sin descripción disponible.' }}</p>
+            <p><strong>Texto</strong> {{ subreddit.submit_text }} </p>
+        </mat-card-content>
+
+        <div mat-dialog-actions id="button-container">
+            <button matButton="filled" (click)="closeDialog()">Cerrar</button>
+        </div>
+    </mat-card>
+</mat-card>
+

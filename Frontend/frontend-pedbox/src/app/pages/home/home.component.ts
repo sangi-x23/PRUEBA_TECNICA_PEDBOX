@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SubredditService } from '../../services/subreddit.service';
 import { Subreddit } from '../../interfaces/subreddit.interface';
+import { SubredditDetail } from '../subreddit-detail/subreddit-detail.component';
 
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { V } from '@angular/cdk/keycodes';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private subredditService: SubredditService) { }
+  constructor(private subredditService: SubredditService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.subredditService.getAllSubreddits().subscribe({
@@ -48,6 +49,12 @@ export class HomeComponent implements OnInit {
       error: (error) => {
         console.error('Error updating subreddits:', error);
       }
+    });
+  }
+
+  openSubredditDetail(id: String): void {
+    this.dialog.open(SubredditDetail, {
+      data: { id }
     });
   }
 }
