@@ -20,7 +20,7 @@ app.use("/api", subredditRouter);
 app.get("/", (req, res) => {
   res.send("API Funcionando!");
 });
-
+/*
 if (process.env.NODE_ENV !== "production") {
   const start = async () => {
     try {
@@ -36,5 +36,5 @@ if (process.env.NODE_ENV !== "production") {
 
   start();
 }
-
+*/
 export default app;
