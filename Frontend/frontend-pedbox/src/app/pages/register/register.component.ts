@@ -4,7 +4,6 @@ import { User } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,8 +28,42 @@ import {merge} from 'rxjs';
 export class RegisterComponent {
 
   hide = signal(true);
+
+  private accessService = inject(AccessService);
+  private router = inject(Router)
+  public formBuilder = inject(FormBuilder);
+
+  public formRegister: FormGroup = this.formBuilder.group({
+    name:['', Validators.required],
+    email:['', [Validators.required, Validators.email]],
+    password:['', Validators.required]
+  })
+
   clickEvent(event: MouseEvent){
     this.hide.set(!this.hide());
     event.stopPropagation();
+  }
+
+  register() {
+    if(this.formRegister.invalid) return;
+
+    const obj:User = {
+      name: this.formRegister.value.name,
+      email: this.formRegister.value.email,
+      password: this.formRegister.value.password,
+    }
+
+    this.accessService.register(obj).subscribe({
+      next:(data)=> {
+        if(data.isSuccess){
+          alert("Usuario registrado con exito")
+          this.router.navigate([''])
+        } else {
+          alert(data.message)
+        }
+      }, error:(error) => {
+        alert(error.error.message)
+      }
+    })
   }
 }

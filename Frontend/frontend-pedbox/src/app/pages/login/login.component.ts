@@ -36,26 +36,6 @@ export class LoginComponent {
     password:['', Validators.required]
   })
 
-  readonly email = new FormGroup('', [Validators.required, Validators.email]);
-
-  errorMessage = signal('');
-
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
-  }
-
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage.set('Obligatorio');
-    } else if (this.email.hasError('email')) {
-      this.errorMessage.set('No es un correo valido');
-    } else {
-      this.errorMessage.set('');
-    }
-  }
-
   hide = signal(true);
   clickEvent(event: MouseEvent){
     this.hide.set(!this.hide());
