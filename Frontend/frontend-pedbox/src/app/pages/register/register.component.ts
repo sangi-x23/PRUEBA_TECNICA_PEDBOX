@@ -10,7 +10,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import {merge} from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -27,8 +26,6 @@ import {merge} from 'rxjs';
 })
 export class RegisterComponent {
 
-  hide = signal(true);
-
   private accessService = inject(AccessService);
   private router = inject(Router)
   public formBuilder = inject(FormBuilder);
@@ -39,6 +36,7 @@ export class RegisterComponent {
     password:['', Validators.required]
   })
 
+  hide = signal(true);
   clickEvent(event: MouseEvent){
     this.hide.set(!this.hide());
     event.stopPropagation();
